@@ -1,0 +1,24 @@
+{
+  "name": "Rows to header",
+  "id_name": "rowstoheader",
+  "category": "Clean",
+  "icon": "wrangle",
+  "description": "Move selected rows to the table header",
+  "help_url": "modules/clean/rows-to-header",
+  "row_action_menu_entry_title": "Move rows to table header",
+  "parameters": [
+    {
+      "name": "Row numbers",
+      "id_name": "rows",
+      "type": "string",
+      "default": "",
+      "placeholder": "1-5, 8"
+    },
+    {
+      "name": "Delete rows above header",
+      "id_name": "deleteabove",
+      "type": "checkbox",
+      "default": true
+    }
+  ]
+}

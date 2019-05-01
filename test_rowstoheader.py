@@ -78,3 +78,12 @@ class TestRowsToHeader(unittest.TestCase):
             'B': ['foo', 'bar', None],
             'C': [None, None, None],
         }))
+
+    def test_remove_unused_categories(self):
+        result = render(
+            pd.DataFrame({'A': ['a', 'b', 'c']}, dtype='category'),
+            {'rows': '2', 'deleteabove': True}
+        )
+        assert_frame_equal(result,
+                           pd.DataFrame({'b': ['c']}, dtype='category'))
+

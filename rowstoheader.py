@@ -96,7 +96,9 @@ def process(table: pd.DataFrame, form: Form) -> pd.DataFrame:
         mask[0:max_header_index] = True
 
     ret = table[~mask]
-    ret.index = pd.RangeIndex(len(ret))
+    ret.reset_index(drop=True, inplace=True)
+    ret = ret.apply(lambda s: s.cat.remove_unused_categories()
+                    if hasattr(s, 'cat') else s)
     ret.columns = unique_names
     return ret
 

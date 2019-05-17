@@ -1,4 +1,5 @@
 import unittest
+import numpy as np
 import pandas as pd
 from pandas.testing import assert_frame_equal
 from rowstoheader import render
@@ -14,7 +15,7 @@ class TestRowsToHeader(unittest.TestCase):
         assert_frame_equal(out, pd.DataFrame({
             '1': [2, 3],
             'foo': ['bar', None],
-            '': [None, None],
+            'Column 3': [None, None],
         }))
 
     def test_multiple_rows(self):
@@ -26,7 +27,7 @@ class TestRowsToHeader(unittest.TestCase):
         assert_frame_equal(out, pd.DataFrame({
             '1 – 2 – 3': [4],
             'foo': ['moo'],
-            '': [None]
+            'Column 3': [None]
         }))
 
     def test_keep_middle_rows(self):
@@ -38,7 +39,7 @@ class TestRowsToHeader(unittest.TestCase):
         assert_frame_equal(out, pd.DataFrame({
             '1 – 3': [2, 4],
             'foo': [None, 'moo'],
-            '': [None, None]
+            'Column 3': [None, None]
         }))
 
     def test_drop_middle_rows(self):
@@ -50,7 +51,7 @@ class TestRowsToHeader(unittest.TestCase):
         assert_frame_equal(out, pd.DataFrame({
             '1 – 3': [4],
             'foo': ['moo'],
-            '': [None],
+            'Column 3': [None],
         }))
 
     def test_avoid_duplicate_columns(self):
@@ -65,6 +66,20 @@ class TestRowsToHeader(unittest.TestCase):
             '1 – 2_1': [3, 4],
             '1 – 2_2': [3, 4],
             '1 – 2_1_1': ['3', '4'],
+        }))
+
+    def test_avoid_empty_columns(self):
+        out = render(pd.DataFrame({
+            'A': ['', 'x'],
+            'B': [np.nan, 'y'],
+            'C': [None, 'z'],
+            'D': ['Column 1', 'a'],  # curve-ball: prevent rename
+        }), {'rows': '1', 'deleteabove': False})
+        assert_frame_equal(out, pd.DataFrame({
+            'Column 1_1': ['x'],
+            'Column 2': ['y'],
+            'Column 3': ['z'],
+            'Column 1': ['a'],
         }))
 
     def test_no_rows_no_op(self):
@@ -86,4 +101,3 @@ class TestRowsToHeader(unittest.TestCase):
         )
         assert_frame_equal(result,
                            pd.DataFrame({'b': ['c']}, dtype='category'))
-

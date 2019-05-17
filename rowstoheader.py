@@ -59,13 +59,15 @@ def _make_names_unique(names: List[str]) -> List[str]:
         """
         Generate a guaranteed-unique column name, using `counts` as state.
 
+        No-op if ideal_name is empty. (We'll rename empty columns later.)
+
         Strategy for making 'A' unique:
         * If 'A' has never been seen before, return it.
         * If 'A' has been seen before, try 'A_1' or 'A_2' (where 1 and 2 are
           the number of times 'A' has been seen).
         * If there is a conflict on 'A_1', recurse.
         """
-        if ideal_name not in counts:
+        if ideal_name not in counts or not ideal_name:
             counts[ideal_name] = 1
             return ideal_name
 
@@ -74,7 +76,20 @@ def _make_names_unique(names: List[str]) -> List[str]:
         backup_name = f'{ideal_name}_{count}'
         return unique_name(backup_name)
 
-    return list(unique_name(name) for name in names)
+    def rename_empty(ideal_name: str, index: int) -> str:
+        """
+        Rename an empty column to "Column 1" ... or "Column 1_1" if the latter
+        is taken.
+        """
+        if not ideal_name:
+            ideal_name = 'Column %d' % (index + 1)
+            return unique_name(ideal_name)
+        else:
+            return ideal_name
+
+    names_including_empty = [unique_name(name) for name in names]
+    return [rename_empty(name, i)
+            for i, name in enumerate(names_including_empty)]
 
 
 def process(table: pd.DataFrame, form: Form) -> pd.DataFrame:

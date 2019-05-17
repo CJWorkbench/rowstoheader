@@ -95,12 +95,14 @@ def process(table: pd.DataFrame, form: Form) -> pd.DataFrame:
         max_header_index = max(t[1] for t in form.index.to_tuples())
         mask[0:max_header_index] = True
 
-    ret = table[~mask]
-    ret.reset_index(drop=True, inplace=True)
-    ret = ret.apply(lambda s: s.cat.remove_unused_categories()
-                    if hasattr(s, 'cat') else s)
-    ret.columns = unique_names
-    return ret
+    table = table[~mask]
+    table.reset_index(drop=True, inplace=True)
+    table.columns = unique_names
+    for column in unique_names:
+        series = table[column]
+        if hasattr(series, 'cat'):
+            series.cat.remove_unused_categories(inplace=True)
+    return table
 
 
 def render(table, params):

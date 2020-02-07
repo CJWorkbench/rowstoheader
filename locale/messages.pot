@@ -1,0 +1,29 @@
+#. default-message: Rows to header
+msgid "_spec.name"
+msgstr ""
+
+#. default-message: Move selected rows to the table header
+msgid "_spec.description"
+msgstr ""
+
+#. default-message: Move rows to table header
+msgid "_spec.row_action_menu_entry_title"
+msgstr ""
+
+#. default-message: Row numbers
+msgid "_spec.parameters.rows.name"
+msgstr ""
+
+#. default-message: 1-5, 8
+msgid "_spec.parameters.rows.placeholder"
+msgstr ""
+
+#. default-message: Delete rows above header
+msgid "_spec.parameters.deleteabove.name"
+msgstr ""
+
+#. default-message: Rows must look like "1-2", "5" or "1-2, 5"; got "{value}"
+#: rowstoheader.py:17
+msgid "badParam.rows.invalidRange"
+msgstr ""
+

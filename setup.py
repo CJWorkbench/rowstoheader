@@ -11,5 +11,5 @@ setup(
     url="https://github.com/CJWorkbench/rowstoheader",
     packages=[""],
     py_modules=["rowstoheader"],
-    install_requires=["pandas==0.25.0"],
+    install_requires=["pandas==0.25.0", "cjwmodule==*"],
 )

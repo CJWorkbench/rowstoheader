@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-07 19:52+0000\n"
+"POT-Creation-Date: 2020-02-18 16:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: el\n"
@@ -20,22 +20,22 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 msgid "_spec.name"
-msgstr ""
+msgstr "Μετατροπή σειράς σε κεφαλίδα"
 
 msgid "_spec.description"
-msgstr ""
+msgstr "Μετακίνηση επιλεγμένων σειρών στην κεφαλίδα του πίνακα"
 
 msgid "_spec.row_action_menu_entry_title"
-msgstr ""
+msgstr "Μετακινήστε σειρές στην κεφαλίδα του πίνακα"
 
 msgid "_spec.parameters.rows.name"
-msgstr ""
+msgstr "Αριθμοί σειρών"
 
 msgid "_spec.parameters.rows.placeholder"
-msgstr ""
+msgstr "1-5, 8"
 
 msgid "_spec.parameters.deleteabove.name"
-msgstr ""
+msgstr "Διαγραφή σειρών πάνω από την κεφαλίδα"
 
 #: rowstoheader.py:17
 msgid "badParam.rows.invalidRange"

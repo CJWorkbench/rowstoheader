@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from pandas.testing import assert_frame_equal
 from rowstoheader import render
+from cjwmodule.testing.i18n import i18n_message
 
 
 class TestRowsToHeader(unittest.TestCase):
@@ -101,3 +102,11 @@ class TestRowsToHeader(unittest.TestCase):
         )
         assert_frame_equal(result,
                            pd.DataFrame({'b': ['c']}, dtype='category'))
+
+
+    def test_zero_gives_error(self):
+        out = render(pd.DataFrame({'A': ['a', 'b', 'c']}, dtype='category'), {'rows': '0-1'})
+        self.assertEqual(
+            out,
+            i18n_message("badParam.rows.invalidRange", {"value":"0-1"})
+        )

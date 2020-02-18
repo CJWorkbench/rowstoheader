@@ -2,11 +2,23 @@ import re
 from typing import Any, Dict, Tuple, List
 import pandas as pd
 from pandas import IntervalIndex
+from cjwmodule import i18n
 
 
 commas = re.compile('\\s*,\\s*')
 numbers = re.compile('(?P<first>[1-9]\d*)(?:-(?P<last>[1-9]\d*))?')
 
+class RangeFormatError(ValueError):
+    def __init__(self, value):
+        self.value = value
+        
+    @property
+    def i18n_message(self) -> i18n.I18nMessage:
+        return i18n.trans(
+            "badParam.rows.invalidRange",
+            'Rows must look like "1-2", "5" or "1-2, 5"; got "{value}"',
+            {"value": self.value}
+        )
 
 def parse_interval(s: str) -> Tuple[int, int]:
     """
@@ -21,13 +33,11 @@ def parse_interval(s: str) -> Tuple[int, int]:
     >>> parse_interval('hi')
     Traceback (most recent call last):
         ...
-    ValueError: Rows must look like "1-2", "5" or "1-2, 5"; got "hi"
+    RangeFormatError: Rows must look like "1-2", "5" or "1-2, 5"; got "hi"
     """
     match = numbers.fullmatch(s)
     if not match:
-        raise ValueError(
-            f'Rows must look like "1-2", "5" or "1-2, 5"; got "{s}"'
-        )
+        raise RangeFormatError(s)
 
     first = int(match.group('first'))
     last = int(match.group('last') or first)
@@ -123,7 +133,7 @@ def process(table: pd.DataFrame, form: Form) -> pd.DataFrame:
 def render(table, params):
     try:
         form = Form.parse(params)
-    except ValueError as err:
-        return str(err)
+    except RangeFormatError as err:
+        return err.i18n_message
 
     return process(table, form)

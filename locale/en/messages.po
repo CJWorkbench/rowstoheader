@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-07 19:52+0000\n"
+"POT-Creation-Date: 2020-03-06 10:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -37,7 +37,7 @@ msgstr "1-5, 8"
 msgid "_spec.parameters.deleteabove.name"
 msgstr "Delete rows above header"
 
-#: rowstoheader.py:17
+#: rowstoheader.py:19
 msgid "badParam.rows.invalidRange"
 msgstr "Rows must look like \"1-2\", \"5\" or \"1-2, 5\"; got \"{value}\""
 

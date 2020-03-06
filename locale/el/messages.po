@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-18 16:05+0000\n"
+"POT-Creation-Date: 2020-03-06 10:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: el\n"
@@ -37,7 +37,9 @@ msgstr "1-5, 8"
 msgid "_spec.parameters.deleteabove.name"
 msgstr "Διαγραφή σειρών πάνω από την κεφαλίδα"
 
-#: rowstoheader.py:17
+#: rowstoheader.py:19
 msgid "badParam.rows.invalidRange"
 msgstr ""
+"Οι σειρές πρέπει να έχουν την εμφάνιση \"1-2\", \"5\" ή \"1-2, 5\" – τώρα"
+" η τιμή είναι \"{value}\""
 

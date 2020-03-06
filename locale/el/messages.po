@@ -39,5 +39,5 @@ msgstr "Διαγραφή σειρών πάνω από την κεφαλίδα"
 
 #: rowstoheader.py:17
 msgid "badParam.rows.invalidRange"
-msgstr ""
+msgstr "Οι σειρές πρέπει να έχουν την εμφάνιση \"1-2\", \"5\" ή \"1-2, 5\" – τώρα η τιμή είναι \"{value}\""
 

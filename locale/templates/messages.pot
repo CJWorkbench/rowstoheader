@@ -23,7 +23,7 @@ msgid "_spec.parameters.deleteabove.name"
 msgstr ""
 
 #. default-message: Rows must look like "1-2", "5" or "1-2, 5"; got "{value}"
-#: rowstoheader.py:17
+#: rowstoheader.py:19
 msgid "badParam.rows.invalidRange"
 msgstr ""
 
